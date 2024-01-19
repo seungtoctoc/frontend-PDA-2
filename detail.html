@@ -87,14 +87,19 @@
             'description 5'
             ]
 
-        var urlParams = new URLSearchParams(window.location.search);
-        var imageId = urlParams.get('imageId');
-        
-        document.getElementById('image').src = 'data/image_' + imageId + '.webp';
-        document.getElementById('title').innerText = title[imageId];
-        document.getElementById('description').innerText = description[imageId];
-
+        init();
         getComments();
+
+
+        function init() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var imageId = urlParams.get('imageId');
+
+            document.getElementById('image').src = 'data/image_' + imageId + '.webp';
+            document.getElementById('title').innerText = title[imageId];
+            document.getElementById('description').innerText = description[imageId];
+        }
+
 
         function postComment() {
             var name = document.getElementById("nameInput").value;
@@ -124,6 +129,7 @@
 
             getComments();
         }
+
 
         function getComments() {
             var commentContainer = document.getElementById('comments');
