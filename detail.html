@@ -48,13 +48,7 @@
         </div>
 
         <div id="comments">
-            <div class="card mt-4">
-                <div class="card-body">
-                    <h5 class="card-title">name</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">date</h6>
-                    <p class="card-text">comment</p>
-                </div>
-            </div>
+        <!-- comments -->
         </div>
     </section>
 
@@ -98,19 +92,24 @@
             var commentContainer = document.getElementById('comments');
             var comment = document.getElementById("commentInput").value;
 
+            var currentDate = new Date();
+            var month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
+            var day = currentDate.getDate();
+            var hours = currentDate.getHours();
+            var minutes = currentDate.getMinutes();
+
+            var formattedDate = month + "월" + day + "일";
+            var formattedTime = hours + "시" + minutes + "분";
 
             commentContainer.innerHTML += `
                 <div class="card mt-4">
                     <div class="card-body">
-                        <h5 class="card-title">name</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">date</h6>
-                        <p class="card-text">comment</p>
+                        <h5 class="card-title">You</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">${formattedDate + " " + formattedTime}</h6>
+                        <p class="card-text">${comment}</p>
                     </div>
                 </div>
             `;
-            
-
-
         }
     </script>
 
