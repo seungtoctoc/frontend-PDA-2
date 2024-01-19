@@ -111,13 +111,13 @@
             var day = currentDate.getDate();
             var hours = currentDate.getHours();
             var minutes = currentDate.getMinutes();
-
+            var second = currentDate.getSeconds();
 
             if (name == '') {
                 name = 'Anonymous';
             }
 
-            var formattedTime =  month + "/" + day + " " + hours + ":" + minutes;
+            var formattedTime =  month + "/" + day + " " + hours + ":" + minutes + ":" + second;
 
             var commentData = {
                 imageId: imageId,
@@ -126,22 +126,22 @@
                 comment: comment
             };
 
-            localStorage.setItem(username, JSON.stringify(commentData));
-
-            alert('Comment added!');
+            localStorage.setItem(formattedTime, JSON.stringify(commentData));
 
             getComments();
         }
 
         function getComments() {
             var commentContainer = document.getElementById('comments');
+            commentContainer.innerHTML = "";
 
             for (var i = 0; i < localStorage.length; i++) {
+                var key = localStorage.key(i);
                 var commentDataString = localStorage.getItem(key);
                 var commentData = JSON.parse(commentDataString);
 
                 
-                if (commentData.imageId === imageId) {
+                if (commentData.imageId == imageId) {
                     commentContainer.innerHTML += `
                         <div class="card mt-4">
                             <div class="card-body">
